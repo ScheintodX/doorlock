@@ -15,7 +15,7 @@ import subprocess
 import time
 import cgi
 
-HOST = '192.168.150.20'
+HOST = '192.168.0.23'
 SSL = True
 PORT = 443 if SSL else 80
 rannum = random.getrandbits(64)
