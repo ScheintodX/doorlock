@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/pi/
+cd /home/pi/binarykitchen/
 sudo ./webserver.py
