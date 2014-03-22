@@ -60,9 +60,7 @@ class BinaryKitchenHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
 			elif form.getvalue("u") == USER and form.getvalue("p") == PASS:
 
-				relais_process = subprocess.Popen(sys.path[0]+'/lockOn.sh', shell=False, stdin=subprocess.PIPE)
-				time.sleep( 3.0 )
-				relais_process = subprocess.Popen(sys.path[0]+'/lockOff.sh', shell=False, stdin=subprocess.PIPE)
+				relais_process = subprocess.Popen('unlock3s', shell=False, stdin=subprocess.PIPE)
 				message = ''.join([
 					'<html><body>CLIENT VALUES:<br>',
 					'client_address=%s (%s)<br>' % (self.client_address,
@@ -143,9 +141,7 @@ class BinaryKitchenHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
 					elif para["u"][0] == USER and para["p"][0] == PASS:
 
-						relais_process = subprocess.Popen(sys.path[0]+'/lockOn.sh', shell=False, stdin=subprocess.PIPE)
-						time.sleep( 3.0 )
-						relais_process = subprocess.Popen(sys.path[0]+'/lockOff.sh', shell=False, stdin=subprocess.PIPE)
+						relais_process = subprocess.Popen('unlock3s', shell=False, stdin=subprocess.PIPE)
 						message = ''.join([
 							'<html><body>CLIENT VALUES:<br>',
 							'client_address=%s (%s)<br>' % (self.client_address,
@@ -169,7 +165,7 @@ class BinaryKitchenHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 				self.wfile.write( bytes(message, 'UTF-8') )
 				rannum = random.getrandbits(64)
 				print( rannum )
-				qr.do( "https://%s:%d?c=%X" % ( HOST, PORT, rannum ), sys.path[0], self.op )
+				qr.do( "https://%s:%d?c=%d" % ( HOST, PORT, rannum ), sys.path[0], self.op )
 			
 			return
             
