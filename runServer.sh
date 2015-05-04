@@ -1,5 +1,3 @@
 #!/bin/bash
-sleep 10
-cd /home/pi/binarykitchen/
-#sudo ./lockOff.sh
+cd /home/pi/
 sudo ./webserver.py

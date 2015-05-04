@@ -11,6 +11,20 @@ import qrcode
 from PIL import Image
 import subprocess
 
+import time
+import door
+
+def init():
+
+	print( "Start CMD for SPI and I2C " + str( subprocess.Popen("gpio load spi; gpio load i2c", shell=True, executable="/bin/bash") ) )
+
+	time.sleep( 2 )
+
+	# We need to reset lock pin to GPIO:
+	door.setup( door.LOCK )
+	door.unlock()
+	
+
 def do( url, pathname, opts ): 
 	x, y = 264, 176
 
@@ -25,8 +39,6 @@ def do( url, pathname, opts ):
 	else:
 		qr.add_data(sys.stdin.read())
 
-	#pathname = os.path.dirname(sys.argv[0])
-	print( "Start CMD for SPI and I2C " + str( subprocess.Popen("gpio load spi; gpio load i2c", shell=True, executable="/bin/bash") ) )
 
 	if sys.stdout.isatty():
 		qr.print_tty()
